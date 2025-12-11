@@ -28,6 +28,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(75, 55, 28, 0.4);
             padding: 30px;
+            animation: fadeIn 0.6s ease-out;
         }
 
         header {
@@ -35,6 +36,7 @@
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 3px solid #6F4E37;
+            animation: fadeIn 0.8s ease-out;
         }
 
         .logo-container {
@@ -51,6 +53,12 @@
             max-width: 200px;
             object-fit: contain;
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+            transition: transform 0.3s ease;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(2deg);
         }
 
         h1 {
@@ -58,6 +66,7 @@
             font-size: 2.5em;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease-out 0.2s backwards;
         }
 
         .subtitle {
@@ -71,6 +80,7 @@
             margin-bottom: 25px;
             flex-wrap: wrap;
             justify-content: center;
+            animation: fadeIn 0.8s ease-out 0.4s backwards;
         }
 
         button {
@@ -129,6 +139,7 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(75, 55, 28, 0.2);
+            animation: fadeIn 0.6s ease-out 0.6s backwards;
         }
 
         thead {
@@ -198,11 +209,21 @@
 
         tbody tr {
             border-bottom: 1px solid #E1D9C1;
-            transition: background 0.2s ease;
+            transition: all 0.3s ease;
+            animation: slideIn 0.4s ease-out backwards;
         }
+
+        tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        tbody tr:nth-child(2) { animation-delay: 0.15s; }
+        tbody tr:nth-child(3) { animation-delay: 0.2s; }
+        tbody tr:nth-child(4) { animation-delay: 0.25s; }
+        tbody tr:nth-child(5) { animation-delay: 0.3s; }
+        tbody tr:nth-child(n+6) { animation-delay: 0.35s; }
 
         tbody tr:hover {
             background: #F5E6D3;
+            transform: translateX(3px);
+            box-shadow: -2px 0 8px rgba(75, 55, 28, 0.1);
         }
 
         tbody tr.low-stock {
@@ -239,7 +260,13 @@
             outline: none;
             border-color: #6F4E37;
             background: #F5E6D3;
-            box-shadow: 0 0 8px rgba(111, 78, 55, 0.4);
+            box-shadow: 0 0 12px rgba(111, 78, 55, 0.5);
+            transform: scale(1.02);
+        }
+
+        input[type="number"]:hover {
+            border-color: #A1887F;
+            box-shadow: 0 0 4px rgba(111, 78, 55, 0.2);
         }
 
         .total-units {
@@ -313,6 +340,18 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 2px 8px rgba(75, 55, 28, 0.15);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out backwards;
+        }
+
+        .history-entry:nth-child(1) { animation-delay: 0.1s; }
+        .history-entry:nth-child(2) { animation-delay: 0.2s; }
+        .history-entry:nth-child(3) { animation-delay: 0.3s; }
+        .history-entry:nth-child(n+4) { animation-delay: 0.4s; }
+
+        .history-entry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(75, 55, 28, 0.25);
         }
 
         .history-date {
@@ -327,12 +366,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
             border-radius: 6px;
         }
 
         .history-date:hover {
             background: #F5E6D3;
+            transform: translateX(5px);
+            padding-left: 20px;
+        }
+
+        .history-date:active {
+            transform: translateX(3px) scale(0.98);
         }
 
         .history-date-toggle {
@@ -383,10 +428,12 @@
             border-radius: 6px;
             font-weight: bold;
             display: none;
+            animation: slideIn 0.4s ease-out, fadeIn 0.4s ease-out;
         }
 
         .status-message.show {
             display: block;
+            animation: slideIn 0.4s ease-out, fadeIn 0.4s ease-out;
         }
 
         .status-success {
@@ -409,9 +456,21 @@
             color: #6F4E37;
         }
 
+        .mobile-text {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
+                padding: 10px;
+            }
+
+            .desktop-text {
+                display: none;
+            }
+
+            .mobile-text {
+                display: inline;
             }
 
             .logo-container {
@@ -424,29 +483,101 @@
             }
 
             h1 {
-                font-size: 1.8em;
+                font-size: 1.5em;
+            }
+
+            .subtitle {
+                font-size: 0.9em;
             }
 
             .actions {
                 flex-direction: column;
+                gap: 10px;
             }
 
             button {
                 width: 100%;
-            }
-
-            th, td {
-                padding: 8px;
-                font-size: 0.9em;
-            }
-
-            input[type="number"] {
+                padding: 12px 20px;
                 font-size: 1em;
-                padding: 10px;
             }
 
             .table-wrapper {
-                overflow-x: scroll;
+                overflow-x: visible;
+            }
+
+            table {
+                font-size: 0.85em;
+            }
+
+            th {
+                padding: 8px 4px;
+                font-size: 0.75em;
+                white-space: nowrap;
+            }
+
+            td {
+                padding: 6px 4px;
+                font-size: 0.85em;
+            }
+
+            .product-name {
+                min-width: auto;
+                font-size: 0.8em;
+                max-width: 80px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            input[type="number"] {
+                font-size: 0.9em;
+                padding: 8px 4px;
+                min-width: 50px;
+                width: 100%;
+            }
+
+            .total-units {
+                font-size: 0.9em;
+                padding: 8px 4px;
+            }
+
+            header {
+                padding-bottom: 15px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px;
+            }
+
+            h1 {
+                font-size: 1.3em;
+            }
+
+            th {
+                padding: 6px 2px;
+                font-size: 0.7em;
+            }
+
+            td {
+                padding: 5px 2px;
+                font-size: 0.8em;
+            }
+
+            .product-name {
+                font-size: 0.75em;
+                max-width: 70px;
+            }
+
+            input[type="number"] {
+                font-size: 0.85em;
+                padding: 6px 3px;
+                min-width: 45px;
+            }
+
+            .total-units {
+                font-size: 0.85em;
             }
         }
 
@@ -488,13 +619,20 @@
                 <thead>
                     <tr>
                         <th>Product Naam</th>
-                        <th class="tooltip">Zuipbakken Aantal
+                        <th class="tooltip">
+                            <span class="desktop-text">Zuipbakken Aantal</span>
+                            <span class="mobile-text">Bakken</span>
                             <span class="tooltiptext">Volle bakken (1 bak = 24 eenheden)</span>
                         </th>
-                        <th class="tooltip">Zuip Aantal
+                        <th class="tooltip">
+                            <span class="desktop-text">Zuip Aantal</span>
+                            <span class="mobile-text">Zuip</span>
                             <span class="tooltiptext">Losse eenheden</span>
                         </th>
-                        <th>Eenheden TOTAAL</th>
+                        <th>
+                            <span class="desktop-text">Eenheden TOTAAL</span>
+                            <span class="mobile-text">Totaal</span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody id="inventoryBody">
@@ -565,12 +703,12 @@
             if (saved) {
                 currentProducts = JSON.parse(saved);
             } else {
-                // Initialize with initial values
+                // Initialize with zero values, but keep initial values for low stock calculation
                 initialProducts.forEach(product => {
                     currentProducts[product.name] = {
-                        zuip: product.zuip,
-                        zuipbakken: product.zuipbakken,
-                        eenheden: product.eenheden,
+                        zuip: 0,
+                        zuipbakken: 0,
+                        eenheden: 0,
                         initialZuip: product.zuip,
                         initialZuipbakken: product.zuipbakken,
                         initialEenheden: product.eenheden
